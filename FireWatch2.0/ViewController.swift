@@ -17,8 +17,10 @@ let route = [
 ]
 
 let avoid = [
-    NMAGeoCoordinates(latitude: 29.2722868, longitude: 48.0538877),
-    NMAGeoCoordinates(latitude: 29.2715354, longitude: 48.0512555)
+    NMAGeoCoordinates(latitude: 29.2716591, longitude: 48.0512518),
+    NMAGeoCoordinates(latitude: 29.2729103, longitude: 48.0541835),
+    NMAGeoCoordinates(latitude: 29.2722631, longitude: 48.0547833),
+    NMAGeoCoordinates(latitude: 29.2709730, longitude: 48.0513148)
 ]
 
 class ViewController: UIViewController {
@@ -28,13 +30,34 @@ class ViewController: UIViewController {
     var progress: Progress? = nil
     
     @IBOutlet weak var mapView: NMAMapView!
+    
+    @IBOutlet var card: UIView!
+    @IBOutlet var cardTopConst: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
+        mapView.gestureDelegate = self
         initValues()
         
         addFirePins()
+    }
+    
+    @IBAction func swipeCardUp() {
+        print("swipe card up")
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.cardTopConst.constant = (self.view.frame.height - 50) * -1
+            self.card.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @IBAction func swipeCardDown() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.cardTopConst.constant = 0
+            self.card.layoutIfNeeded()
+        }, completion: nil)
     }
     
     /*
@@ -45,9 +68,10 @@ class ViewController: UIViewController {
         let pen = NMADynamicPenalty()
         pen.addBannedArea(NMAMapPolygon(vertices: avoid))
         coreRouter.dynamicPenalty = pen
+        
         mapView.set(
             geoCenter: NMAGeoCoordinates(latitude: 49.260327, longitude: -123.115025),
-            zoomLevel: 10, animation: NMAMapAnimation.none
+            zoomLevel: 10, animation: NMAMapAnimation.linear
         )
     }
     
@@ -62,9 +86,9 @@ class ViewController: UIViewController {
     
     @IBAction func addRoute(_ sender: UIButton) {
         let routingMode = NMARoutingMode.init(
-            routingType: NMARoutingType.fastest,
+            routingType: NMARoutingType.balanced,
             transportMode: NMATransportMode.car,
-            routingOptions: NMARoutingOption.avoidHighway
+            routingOptions: NMARoutingOption.avoidTunnel
         )
         
         // check if calculation completed otherwise cancel.
@@ -98,38 +122,93 @@ class ViewController: UIViewController {
             
             self.mapRouts.append(mapRoute)
     
-            self.mapView.set(boundingBox: box, animation: NMAMapAnimation.linear)
+            self.mapView.set(boundingBox: box, animation: NMAMapAnimation.bow)
             self.mapView.add(mapObject: mapRoute)
         })
     }
 
     func addFirePins() {
-//        points = getPointsCords()
-//        for point in points {
-//
-//        }
+        let points = getPointsCords()
+        let fireClustersLayer = NMAClusterLayer()
+        var markers = [NMAMapMarker]()
+        for point in points.FireLocations {
+            let mm = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: point.Latitude, longitude: point.Longitude),
+                                  image: UIImage(systemName: "flame.fill")!.withTintColor(.red))
+            markers.append(mm)
+        }
         
-        let mm = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: 54.54, longitude: 13.23))
+        fireClustersLayer.addMarkers(markers)
+        
+        // clusters style
+        let clusterStyle = NMAImageClusterStyle(uiImage: UIImage(systemName: "flame.fill"))
+        
+        mapView.add(clusterLayer: fireClustersLayer)
     }
     
-//    func getPointsCords() -> [point] {
-//        var data: Data? = nil
-//        var points: [Point]? = nil
+    func getPointsCords() -> Points {
+        var points: Points!
+        let data = pointsData.data(using: .utf8)!
+        
+        do {
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [[String:Double]]
+            {
+               print(jsonArray) // use the json here
+            } else {
+                print("bad json")
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+
+        do  {
+            points = try JSONDecoder().decode(Points.self, from: data)
+
+        } catch let error {
+            print(error, "hi")
+        }
+        
+        return points
+    }
+}
+
+extension ViewController: NMAMapViewDelegate {
+    func mapView(_ mapView: NMAMapView, didSelect objects: [NMAViewObject]) {
+        print("object tap")
+        
+        for object in objects {
+            if object is NMAClusterViewObject {
+                let cluster = object as! NMAClusterViewObject
+                let boundingBox = cluster.boundingBox;
+                
+                mapView.set(boundingBox: boundingBox, animation: NMAMapAnimation.bow)
+                
+            }else if object is NMAMapMarker {
+                let marker = object as! NMAMapMarker
+                
+                UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                    self.cardTopConst.constant = -100
+                    self.card.layoutIfNeeded()
+                }, completion: nil)
+            }
+        }
+    }
+}
+
+extension ViewController: NMAMapGestureDelegate {
+    func mapView(_ mapView: NMAMapView, didReceiveLongPressAt location: CGPoint) {
+        print("long tap")
+        print(location)
+//        mapView.convert(<#T##point: CGPoint##CGPoint#>, to: <#T##UICoordinateSpace#>)
+    }
+    
+//    func mapView(_ mapView: NMAMapView, didReceiveTapAt location: CGPoint) {
+//        print("tap on map")
 //
-//        do {
-//            data = try Data(contentsOf: URL(fileURLWithPath: parentFile +  "/data.txt"))
-//        } catch {
-//        }
-//
-//        guard data != nil else {
-//            return points
-//        }
-//
-//        do  {
-//            points = try JSONDecoder().decode(News.self, from: data!)
-//
-//        } catch let error {
-//            print(error, "hi")
+//        if cardTopConst.constant < 0 {
+//            UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+//                self.cardTopConst.constant = 0
+//                self.card.layoutIfNeeded()
+//            }, completion: nil)
 //        }
 //    }
 }

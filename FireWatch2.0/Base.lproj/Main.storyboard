@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6jr-Ie-nzU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +10,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FireWatch2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Oxylus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,6 +18,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mv-2D-tbO" customClass="NMAMapView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wra-c1-TTV">
                                 <rect key="frame" x="159" y="409" width="96" height="78"/>
@@ -29,11 +29,32 @@
                                     <action selector="addRoute:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uAH-mL-U8i"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpG-LP-l84">
+                                <rect key="frame" x="0.0" y="813" width="414" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="bqt-zf-wTt"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1CW-LT-7In" appends="YES" id="8K0-ia-7Qr"/>
+                                    <outletCollection property="gestureRecognizers" destination="imv-z1-2z1" appends="YES" id="aSL-5w-VpU"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6mv-2D-tbO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="15e-N3-Bbe"/>
+                            <constraint firstItem="QpG-LP-l84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BIO-aF-OGU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6mv-2D-tbO" secondAttribute="bottom" id="Il0-ia-kQP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QpG-LP-l84" secondAttribute="trailing" id="PiU-cv-tzB"/>
+                            <constraint firstItem="QpG-LP-l84" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Qk0-eb-ocF">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
                             <constraint firstItem="6mv-2D-tbO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eqp-4F-Z2b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6mv-2D-tbO" secondAttribute="trailing" id="oJY-CC-oH9"/>
                         </constraints>
@@ -41,12 +62,56 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="aga-Qf-sRB"/>
                     <connections>
+                        <outlet property="card" destination="QpG-LP-l84" id="snx-TG-gax"/>
+                        <outlet property="cardTopConst" destination="Qk0-eb-ocF" id="ayh-Y2-ESD"/>
                         <outlet property="mapView" destination="6mv-2D-tbO" id="QZl-zb-BQV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="1CW-LT-7In">
+                    <connections>
+                        <action selector="swipeCardUp" destination="BYZ-38-t0r" id="3ar-yH-xQb"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="imv-z1-2z1">
+                    <connections>
+                        <action selector="swipeCardDown" destination="BYZ-38-t0r" id="xxn-gE-x8s"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="112.5"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="g7p-MN-p6F">
+            <objects>
+                <viewController id="cxk-U3-2K9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Qy-5T-yyL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hqT-DH-syb"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="VIZ-XT-c9H"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7sV-Qn-o18" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="836"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="9zV-E3-lUZ">
+            <objects>
+                <viewController id="BOo-HJ-4p7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LLQ-U2-IdT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Mey-zU-Wg6"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="hXc-kX-T9r"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RYT-l2-EQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="1539"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="g1s-NU-FJF">
@@ -60,6 +125,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ujA-3v-4Fh"/>
+                        <segue destination="cxk-U3-2K9" kind="relationship" relationship="viewControllers" id="QeU-aP-bl4"/>
+                        <segue destination="BOo-HJ-4p7" kind="relationship" relationship="viewControllers" id="bNO-Pe-999"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPQ-Ko-fzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
