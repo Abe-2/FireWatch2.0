@@ -14,6 +14,7 @@
 		A8204E7A2359891C0070E43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8204E792359891C0070E43C /* Assets.xcassets */; };
 		A8204E7D2359891C0070E43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */; };
 		A8204E8523599C910070E43C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E8423599C910070E43C /* Model.swift */; };
+		A8204E87235A094C0070E43C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E86235A094C0070E43C /* GradientView.swift */; };
 		B2B8554ABCF6C366D30A16A6 /* Pods_FireWatch2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A623B4986A5A1B02F95B8D8D /* Pods_FireWatch2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		A8204E7C2359891C0070E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8204E7E2359891C0070E43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8204E8423599C910070E43C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A8204E86235A094C0070E43C /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BC5747B7008FFBB389553200 /* Pods-FireWatch2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireWatch2.0.release.xcconfig"; path = "Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 				A8204E722359891B0070E43C /* SceneDelegate.swift */,
 				A8204E742359891B0070E43C /* ViewController.swift */,
 				A8204E8423599C910070E43C /* Model.swift */,
+				A8204E86235A094C0070E43C /* GradientView.swift */,
 				A8204E762359891B0070E43C /* Main.storyboard */,
 				A8204E792359891C0070E43C /* Assets.xcassets */,
 				A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */,
@@ -211,6 +214,7 @@
 			files = (
 				A8204E752359891B0070E43C /* ViewController.swift in Sources */,
 				A8204E712359891B0070E43C /* AppDelegate.swift in Sources */,
+				A8204E87235A094C0070E43C /* GradientView.swift in Sources */,
 				A8204E732359891B0070E43C /* SceneDelegate.swift in Sources */,
 				A8204E8523599C910070E43C /* Model.swift in Sources */,
 			);

@@ -9,6 +9,7 @@
 import UIKit
 import NMAKit
 import CoreFoundation
+import MapKit
 
 // two Geo points for route.
 let route = [
@@ -33,6 +34,8 @@ class ViewController: UIViewController {
     var markersLayer: NMAClusterLayer!
     
     var reportMarker: NMAMapMarker!
+    @IBOutlet var reportBtn: UIButton!
+    @IBOutlet var closeReportBtn: UIButton!
     
     @IBOutlet var card: UIView!
     @IBOutlet var cardTopConst: NSLayoutConstraint!
@@ -200,18 +203,32 @@ extension ViewController: NMAMapViewDelegate {
 extension ViewController: NMAMapGestureDelegate {
     func mapView(_ mapView: NMAMapView, didReceiveLongPressAt location: CGPoint) {
         print("long tap")
-        print(location)
-        let pinCord = mapView.convert(location, to: mapView.coordinateSpace)
-        print(pinCord)
+        
+        let pinCord = mapView.geoCoordinates(from: location)
         
         if reportMarker != nil {
             markersLayer.removeMarker(reportMarker)
         }
         
-        reportMarker = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: Double(pinCord.x), longitude: Double(pinCord.y)),
+        reportMarker = NMAMapMarker(geoCoordinates: pinCord!,
                                   image: UIImage(systemName: "mappin")!.withTintColor(.red))
-//        mm.coordinates = NMAGeoCoordinates(latitude: Double(pinCord.x), longitude: Double(pinCord.y))
         markersLayer.addMarker(reportMarker)
+        
+        UIView.animate(withDuration: 0.2) {
+            self.reportBtn.alpha = 1
+            self.closeReportBtn.alpha = 1
+        }
+    }
+    
+    @IBAction func closeReport() {
+        if reportMarker != nil {
+            markersLayer.removeMarker(reportMarker)
+        }
+        
+        UIView.animate(withDuration: 0.2) {
+            self.reportBtn.alpha = 0
+            self.closeReportBtn.alpha = 0
+        }
     }
     
 //    func mapView(_ mapView: NMAMapView, didReceiveTapAt location: CGPoint) {
