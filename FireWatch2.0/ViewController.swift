@@ -30,6 +30,9 @@ class ViewController: UIViewController {
     var progress: Progress? = nil
     
     @IBOutlet weak var mapView: NMAMapView!
+    var markersLayer: NMAClusterLayer!
+    
+    var reportMarker: NMAMapMarker!
     
     @IBOutlet var card: UIView!
     @IBOutlet var cardTopConst: NSLayoutConstraint!
@@ -47,16 +50,16 @@ class ViewController: UIViewController {
     @IBAction func swipeCardUp() {
         print("swipe card up")
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-            self.cardTopConst.constant = (self.view.frame.height - 50) * -1
-            self.card.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.cardTopConst.constant = (self.view.frame.height - 150) * -1
+            self.view.layoutIfNeeded()
         }, completion: nil)
     }
     
     @IBAction func swipeCardDown() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.cardTopConst.constant = 0
-            self.card.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         }, completion: nil)
     }
     
@@ -129,7 +132,7 @@ class ViewController: UIViewController {
 
     func addFirePins() {
         let points = getPointsCords()
-        let fireClustersLayer = NMAClusterLayer()
+        markersLayer = NMAClusterLayer()
         var markers = [NMAMapMarker]()
         for point in points.FireLocations {
             let mm = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: point.Latitude, longitude: point.Longitude),
@@ -137,12 +140,12 @@ class ViewController: UIViewController {
             markers.append(mm)
         }
         
-        fireClustersLayer.addMarkers(markers)
+        markersLayer.addMarkers(markers)
         
         // clusters style
         let clusterStyle = NMAImageClusterStyle(uiImage: UIImage(systemName: "flame.fill"))
         
-        mapView.add(clusterLayer: fireClustersLayer)
+        mapView.add(clusterLayer: markersLayer)
     }
     
     func getPointsCords() -> Points {
@@ -187,7 +190,7 @@ extension ViewController: NMAMapViewDelegate {
                 
                 UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                     self.cardTopConst.constant = -100
-                    self.card.layoutIfNeeded()
+                    self.view.layoutIfNeeded()
                 }, completion: nil)
             }
         }
@@ -198,7 +201,17 @@ extension ViewController: NMAMapGestureDelegate {
     func mapView(_ mapView: NMAMapView, didReceiveLongPressAt location: CGPoint) {
         print("long tap")
         print(location)
-//        mapView.convert(<#T##point: CGPoint##CGPoint#>, to: <#T##UICoordinateSpace#>)
+        let pinCord = mapView.convert(location, to: mapView.coordinateSpace)
+        print(pinCord)
+        
+        if reportMarker != nil {
+            markersLayer.removeMarker(reportMarker)
+        }
+        
+        reportMarker = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: Double(pinCord.x), longitude: Double(pinCord.y)),
+                                  image: UIImage(systemName: "mappin")!.withTintColor(.red))
+//        mm.coordinates = NMAGeoCoordinates(latitude: Double(pinCord.x), longitude: Double(pinCord.y))
+        markersLayer.addMarker(reportMarker)
     }
     
 //    func mapView(_ mapView: NMAMapView, didReceiveTapAt location: CGPoint) {

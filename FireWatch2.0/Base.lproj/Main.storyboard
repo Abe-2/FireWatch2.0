@@ -30,12 +30,26 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QpG-LP-l84">
-                                <rect key="frame" x="0.0" y="813" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="813" width="414" height="969"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="bqt-zf-wTt"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="-3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowUIColor">
+                                        <color key="value" white="0.0" alpha="0.15793557359999999" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="1CW-LT-7In" appends="YES" id="8K0-ia-7Qr"/>
                                     <outletCollection property="gestureRecognizers" destination="imv-z1-2z1" appends="YES" id="aSL-5w-VpU"/>
@@ -45,6 +59,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6mv-2D-tbO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="15e-N3-Bbe"/>
+                            <constraint firstItem="QpG-LP-l84" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" constant="200" id="9CJ-rM-DSv"/>
                             <constraint firstItem="QpG-LP-l84" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BIO-aF-OGU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6mv-2D-tbO" secondAttribute="bottom" id="Il0-ia-kQP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QpG-LP-l84" secondAttribute="trailing" id="PiU-cv-tzB"/>
