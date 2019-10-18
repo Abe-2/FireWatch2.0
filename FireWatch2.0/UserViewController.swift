@@ -9,11 +9,14 @@
 import UIKit
 
 class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet var table: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        table.delegate = self
+        table.dataSource = self
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

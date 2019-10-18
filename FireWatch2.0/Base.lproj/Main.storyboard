@@ -348,11 +348,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Ra-5o-e4a">
                                 <rect key="frame" x="0.0" y="265" width="414" height="422"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="cxk-U3-2K9" id="3Pa-bN-L5x"/>
-                                    <outlet property="delegate" destination="cxk-U3-2K9" id="dpS-2p-B8k"/>
-                                    <outlet property="prefetchDataSource" destination="cxk-U3-2K9" id="V4o-1f-ez6"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -368,6 +363,9 @@
                         <viewLayoutGuide key="safeArea" id="hqT-DH-syb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="VIZ-XT-c9H"/>
+                    <connections>
+                        <outlet property="table" destination="7Ra-5o-e4a" id="XBu-nL-iSq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sV-Qn-o18" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
