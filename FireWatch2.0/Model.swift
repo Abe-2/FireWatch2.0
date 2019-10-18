@@ -17,6 +17,14 @@ struct Point: Decodable {
     Longitude: Double
 }
 
+struct Fire {
+    
+}
+
+struct Shelter {
+    
+}
+
 let pointsData = "{\n" +
 "  \"FireLocations\": [\n" +
 "    {\n" +

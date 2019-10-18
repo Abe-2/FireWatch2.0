@@ -15,6 +15,12 @@
 		A8204E7D2359891C0070E43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */; };
 		A8204E8523599C910070E43C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E8423599C910070E43C /* Model.swift */; };
 		A8204E87235A094C0070E43C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E86235A094C0070E43C /* GradientView.swift */; };
+		A8204E8B235A37F00070E43C /* FireView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8204E8A235A37F00070E43C /* FireView.xib */; };
+		A8204E8D235A39C00070E43C /* FireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E8C235A39C00070E43C /* FireView.swift */; };
+		A8204E8F235A3C5E0070E43C /* ShelterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8204E8E235A3C5E0070E43C /* ShelterView.xib */; };
+		A8204E91235A3E820070E43C /* ShelterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E90235A3E820070E43C /* ShelterView.swift */; };
+		A8204E93235A49CA0070E43C /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E92235A49CA0070E43C /* MapMarker.swift */; };
+		A8204E95235A56480070E43C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E94235A56480070E43C /* UserViewController.swift */; };
 		B2B8554ABCF6C366D30A16A6 /* Pods_FireWatch2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A623B4986A5A1B02F95B8D8D /* Pods_FireWatch2_0.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +37,12 @@
 		A8204E7E2359891C0070E43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8204E8423599C910070E43C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A8204E86235A094C0070E43C /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		A8204E8A235A37F00070E43C /* FireView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FireView.xib; sourceTree = "<group>"; };
+		A8204E8C235A39C00070E43C /* FireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireView.swift; sourceTree = "<group>"; };
+		A8204E8E235A3C5E0070E43C /* ShelterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShelterView.xib; sourceTree = "<group>"; };
+		A8204E90235A3E820070E43C /* ShelterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterView.swift; sourceTree = "<group>"; };
+		A8204E92235A49CA0070E43C /* MapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarker.swift; sourceTree = "<group>"; };
+		A8204E94235A56480070E43C /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		BC5747B7008FFBB389553200 /* Pods-FireWatch2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireWatch2.0.release.xcconfig"; path = "Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +99,14 @@
 				A8204E702359891B0070E43C /* AppDelegate.swift */,
 				A8204E722359891B0070E43C /* SceneDelegate.swift */,
 				A8204E742359891B0070E43C /* ViewController.swift */,
+				A8204E92235A49CA0070E43C /* MapMarker.swift */,
 				A8204E8423599C910070E43C /* Model.swift */,
 				A8204E86235A094C0070E43C /* GradientView.swift */,
+				A8204E8C235A39C00070E43C /* FireView.swift */,
+				A8204E8A235A37F00070E43C /* FireView.xib */,
+				A8204E90235A3E820070E43C /* ShelterView.swift */,
+				A8204E8E235A3C5E0070E43C /* ShelterView.xib */,
+				A8204E94235A56480070E43C /* UserViewController.swift */,
 				A8204E762359891B0070E43C /* Main.storyboard */,
 				A8204E792359891C0070E43C /* Assets.xcassets */,
 				A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */,
@@ -157,8 +175,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8204E8F235A3C5E0070E43C /* ShelterView.xib in Resources */,
 				A8204E7D2359891C0070E43C /* LaunchScreen.storyboard in Resources */,
 				A8204E7A2359891C0070E43C /* Assets.xcassets in Resources */,
+				A8204E8B235A37F00070E43C /* FireView.xib in Resources */,
 				A8204E782359891B0070E43C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,11 +232,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8204E8D235A39C00070E43C /* FireView.swift in Sources */,
+				A8204E95235A56480070E43C /* UserViewController.swift in Sources */,
 				A8204E752359891B0070E43C /* ViewController.swift in Sources */,
+				A8204E93235A49CA0070E43C /* MapMarker.swift in Sources */,
 				A8204E712359891B0070E43C /* AppDelegate.swift in Sources */,
 				A8204E87235A094C0070E43C /* GradientView.swift in Sources */,
 				A8204E732359891B0070E43C /* SceneDelegate.swift in Sources */,
 				A8204E8523599C910070E43C /* Model.swift in Sources */,
+				A8204E91235A3E820070E43C /* ShelterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

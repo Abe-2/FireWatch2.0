@@ -9,7 +9,6 @@
 import UIKit
 import NMAKit
 import CoreFoundation
-import MapKit
 
 // two Geo points for route.
 let route = [
@@ -47,23 +46,9 @@ class ViewController: UIViewController {
         mapView.gestureDelegate = self
         initValues()
         
-        addFirePins()
-    }
-    
-    @IBAction func swipeCardUp() {
-        print("swipe card up")
+        addRoute()
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-            self.cardTopConst.constant = (self.view.frame.height - 150) * -1
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
-    @IBAction func swipeCardDown() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-            self.cardTopConst.constant = 0
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        addFirePins()
     }
     
     /*
@@ -90,53 +75,73 @@ class ViewController: UIViewController {
         mapView.zoomLevel = 10
     }
     
-    @IBAction func addRoute(_ sender: UIButton) {
-        let routingMode = NMARoutingMode.init(
-            routingType: NMARoutingType.balanced,
-            transportMode: NMATransportMode.car,
-            routingOptions: NMARoutingOption.avoidTunnel
-        )
+    func addRoute() {
+        let shelterview = ShelterView()
+        shelterview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: card.frame.height)
+        card.addSubview(shelterview)
         
-        // check if calculation completed otherwise cancel.
-        if !(progress?.isFinished ?? false) {
-            progress?.cancel()
-        }
-        
-        // store progress.
-        progress = coreRouter.calculateRoute(withStops: route, routingMode: routingMode, { (routeResult, error) in
-            if (error != NMARoutingError.none) {
-                NSLog("Error in callback: \(error)")
-                return
+        shelterview.route = {
+            print("routing")
+            
+            self.closeCard()
+            
+            let routingMode = NMARoutingMode.init(
+                routingType: NMARoutingType.balanced,
+                transportMode: NMATransportMode.car,
+                routingOptions: NMARoutingOption.avoidTunnel
+            )
+            
+            // check if calculation completed otherwise cancel.
+            if !(self.progress?.isFinished ?? false) {
+                self.progress?.cancel()
             }
             
-            guard let route = routeResult?.routes?.first else {
-                print("Empty Route result")
-                return
-            }
-            
-            guard let box = route.boundingBox, let mapRoute = NMAMapRoute.init(route) else {
-                print("Can't init Map Route")
-                return
-            }
-            
-            if (self.mapRouts.count != 0) {
-                for route in self.mapRouts {
-                    self.mapView.remove(mapObject: route)
+            // store progress.
+            self.progress = self.coreRouter.calculateRoute(withStops: route, routingMode: routingMode, { (routeResult, error) in
+                if (error != NMARoutingError.none) {
+                    NSLog("Error in callback: \(error)")
+                    return
                 }
-                self.mapRouts.removeAll()
-            }
-            
-            self.mapRouts.append(mapRoute)
-    
-            self.mapView.set(boundingBox: box, animation: NMAMapAnimation.bow)
-            self.mapView.add(mapObject: mapRoute)
-        })
+                
+                guard let route = routeResult?.routes?.first else {
+                    print("Empty Route result")
+                    return
+                }
+                
+                guard let box = route.boundingBox, let mapRoute = NMAMapRoute.init(route) else {
+                    print("Can't init Map Route")
+                    return
+                }
+                
+                if (self.mapRouts.count != 0) {
+                    for route in self.mapRouts {
+                        self.mapView.remove(mapObject: route)
+                    }
+                    self.mapRouts.removeAll()
+                }
+                
+                self.mapRouts.append(mapRoute)
+        
+                self.mapView.set(boundingBox: box, animation: NMAMapAnimation.bow)
+                self.mapView.add(mapObject: mapRoute)
+            })
+        }
     }
 
     func addFirePins() {
         let points = getPointsCords()
+        
         markersLayer = NMAClusterLayer()
         var markers = [NMAMapMarker]()
+        
+//        for fire in LoginViewController.fires {
+//            let mm = MapMarker(geoCoordinates: NMAGeoCoordinates(latitude: fire.Latitude, longitude: fire.Longitude),
+//                                  image: UIImage(systemName: "flame.fill")!.withTintColor(.red))
+//            mm.isFire = true
+//            mm.fireData = fire
+//            mm.shelterData = nil
+//            markers.append(mm)
+//        }
         for point in points.FireLocations {
             let mm = NMAMapMarker(geoCoordinates: NMAGeoCoordinates(latitude: point.Latitude, longitude: point.Longitude),
                                   image: UIImage(systemName: "flame.fill")!.withTintColor(.red))
@@ -146,7 +151,7 @@ class ViewController: UIViewController {
         markersLayer.addMarkers(markers)
         
         // clusters style
-        let clusterStyle = NMAImageClusterStyle(uiImage: UIImage(systemName: "flame.fill"))
+        _ = NMAImageClusterStyle(uiImage: UIImage(systemName: "flame.fill"))
         
         mapView.add(clusterLayer: markersLayer)
     }
@@ -154,7 +159,7 @@ class ViewController: UIViewController {
     func getPointsCords() -> Points {
         var points: Points!
         let data = pointsData.data(using: .utf8)!
-        
+
         do {
             if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [[String:Double]]
             {
@@ -172,7 +177,7 @@ class ViewController: UIViewController {
         } catch let error {
             print(error, "hi")
         }
-        
+
         return points
     }
 }
@@ -189,7 +194,7 @@ extension ViewController: NMAMapViewDelegate {
                 mapView.set(boundingBox: boundingBox, animation: NMAMapAnimation.bow)
                 
             }else if object is NMAMapMarker {
-                let marker = object as! NMAMapMarker
+                _ = object as! NMAMapMarker
                 
                 UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                     self.cardTopConst.constant = -100
@@ -200,6 +205,7 @@ extension ViewController: NMAMapViewDelegate {
     }
 }
 
+// -MARK: map gestures
 extension ViewController: NMAMapGestureDelegate {
     func mapView(_ mapView: NMAMapView, didReceiveLongPressAt location: CGPoint) {
         print("long tap")
@@ -241,5 +247,34 @@ extension ViewController: NMAMapGestureDelegate {
 //            }, completion: nil)
 //        }
 //    }
+}
+
+// -MARK: card methods
+extension ViewController {
+    @IBAction func swipeCardUp() {
+        print("swipe card up")
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.cardTopConst.constant = (self.view.frame.height - 50) * -1
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @IBAction func swipeCardDown() {
+        closeCard()
+    }
+    
+    func closeCard() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.cardTopConst.constant = 0
+            self.view.layoutIfNeeded()
+            print(self.card.subviews)
+            self.card.subviews[0].alpha = 0
+        }, completion: { _ in
+            self.card.subviews[0].removeFromSuperview()
+        })
+        
+        
+    }
 }
 
