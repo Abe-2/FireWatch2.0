@@ -351,6 +351,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="cxk-U3-2K9" id="3Pa-bN-L5x"/>
                                     <outlet property="delegate" destination="cxk-U3-2K9" id="dpS-2p-B8k"/>
+                                    <outlet property="prefetchDataSource" destination="cxk-U3-2K9" id="V4o-1f-ez6"/>
                                 </connections>
                             </tableView>
                         </subviews>
