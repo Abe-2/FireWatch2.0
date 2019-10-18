@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,13 @@
 		A8204E782359891B0070E43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8204E762359891B0070E43C /* Main.storyboard */; };
 		A8204E7A2359891C0070E43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8204E792359891C0070E43C /* Assets.xcassets */; };
 		A8204E7D2359891C0070E43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */; };
+		A8204E8523599C910070E43C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8204E8423599C910070E43C /* Model.swift */; };
+		B2B8554ABCF6C366D30A16A6 /* Pods_FireWatch2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A623B4986A5A1B02F95B8D8D /* Pods_FireWatch2_0.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7078B98A0B776AF1F62D7E98 /* Pods-FireWatch2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireWatch2.0.debug.xcconfig"; path = "Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0.debug.xcconfig"; sourceTree = "<group>"; };
+		A623B4986A5A1B02F95B8D8D /* Pods_FireWatch2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireWatch2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8204E6D2359891B0070E43C /* FireWatch2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireWatch2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8204E702359891B0070E43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8204E722359891B0070E43C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		A8204E792359891C0070E43C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8204E7C2359891C0070E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8204E7E2359891C0070E43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8204E8423599C910070E43C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		BC5747B7008FFBB389553200 /* Pods-FireWatch2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireWatch2.0.release.xcconfig"; path = "Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B8554ABCF6C366D30A16A6 /* Pods_FireWatch2_0.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1638BF8DA2710524407C631F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A623B4986A5A1B02F95B8D8D /* Pods_FireWatch2_0.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3AD582CC91542955B8E96966 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7078B98A0B776AF1F62D7E98 /* Pods-FireWatch2.0.debug.xcconfig */,
+				BC5747B7008FFBB389553200 /* Pods-FireWatch2.0.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A8204E642359891B0070E43C = {
 			isa = PBXGroup;
 			children = (
 				A8204E6F2359891B0070E43C /* FireWatch2.0 */,
 				A8204E6E2359891B0070E43C /* Products */,
+				3AD582CC91542955B8E96966 /* Pods */,
+				1638BF8DA2710524407C631F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +85,7 @@
 				A8204E702359891B0070E43C /* AppDelegate.swift */,
 				A8204E722359891B0070E43C /* SceneDelegate.swift */,
 				A8204E742359891B0070E43C /* ViewController.swift */,
+				A8204E8423599C910070E43C /* Model.swift */,
 				A8204E762359891B0070E43C /* Main.storyboard */,
 				A8204E792359891C0070E43C /* Assets.xcassets */,
 				A8204E7B2359891C0070E43C /* LaunchScreen.storyboard */,
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8204E812359891C0070E43C /* Build configuration list for PBXNativeTarget "FireWatch2.0" */;
 			buildPhases = (
+				8A8CB5BFC11A74207A871D5D /* [CP] Check Pods Manifest.lock */,
 				A8204E692359891B0070E43C /* Sources */,
 				A8204E6A2359891B0070E43C /* Frameworks */,
 				A8204E6B2359891B0070E43C /* Resources */,
+				0A4048E7863925BA7435DE53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +162,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A4048E7863925BA7435DE53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FireWatch2.0/Pods-FireWatch2.0-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A8CB5BFC11A74207A871D5D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FireWatch2.0-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A8204E692359891B0070E43C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -141,6 +212,7 @@
 				A8204E752359891B0070E43C /* ViewController.swift in Sources */,
 				A8204E712359891B0070E43C /* AppDelegate.swift in Sources */,
 				A8204E732359891B0070E43C /* SceneDelegate.swift in Sources */,
+				A8204E8523599C910070E43C /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,37 +354,41 @@
 		};
 		A8204E822359891C0070E43C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7078B98A0B776AF1F62D7E98 /* Pods-FireWatch2.0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CBVEFFGT2S;
 				INFOPLIST_FILE = FireWatch2.0/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "none.FireWatch2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nasa.Oxylus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		A8204E832359891C0070E43C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC5747B7008FFBB389553200 /* Pods-FireWatch2.0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CBVEFFGT2S;
 				INFOPLIST_FILE = FireWatch2.0/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "none.FireWatch2-0";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nasa.Oxylus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import NMAKit
+
+let credentials = (
+    appId: "K2Zbam3NQrqrCVmmVJLl",
+    appCode: "2fX5LG2pIDpvSHk8nh1B_A",
+    licenseKey: "PqUAr2euM++JRPV+/DwcfXmS5pbEcUHSxM0hY35HYNgaxD9T5Dy+OaWaKfhvNLS6iYIwu4g119sWWMJ0Dh1gifC/8WXtHp/hxJGJSkDRlv3Wbps2He491pjojrdrifbUT6rckiDqW7Mi774GEKrOqffdH/0DNpXtlyT9onDqg476Sz0exqV1GB7l57RGnH08DFUWkTgQsqVQm+SZyujusoju7Spmd+VPhNH8w9xXE3nNC5JhKRZmRUcUkycNVpIdo+Z5KKpm/n0BiXsoNVEh7X8Z3qMyktT9bd6vhrKBgLMHpqdILE/ZFb4mUvPyRwqYMRxG08ixM7KdDoI/7XViKV6yZ5llsA8PMkERd3t+GgaJbAewnM0hkgkFpc/TLBtMDn6iOs8/r/U76BHX0IT6nJCcf6c2iHMmLAM8fIj7n57dc94o/9kivuu66kjfKzkXzvU1T3/wBY3NxFaRL7wU6XzeEUw1rjL7MRWyu3+kmFSmC+VeeKJCKLzfYOKY8Mkmi6dvgFuc29nJgX8MtuaK1YONXThYtzcTNyXKTJG9F+2L9zm6UwSGkea7amRnJoItQP7sbIIamTCwAbrO5mFgA4TSI6NmUc4e8jUej2c/rAeCF6Zaw9nxZ27Reefk+9zSj8hWDAD5KHs8I6jqpOzzrYm4rBsZjpzEKa20fobPg3o="
+)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        NMAApplicationContext.setAppId(credentials.appId, appCode: credentials.appCode, licenseKey: credentials.licenseKey)
+        
         return true
     }
 
